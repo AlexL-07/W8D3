@@ -30,19 +30,27 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop){
         outerBubbleSortLoop(madeAnySwaps);
         return;
     }
-        askIfGreaterThan(arr[i], arr[i + 1], function (isGreaterThan){
-            
-        })
-
-        innerBubbleSortLoop(arr, i + 1, madeAnySwaps, outerBubbleSortLoop)
-
-
+    askIfGreaterThan(arr[i], arr[i + 1], function (isGreaterThan){
+        if (isGreaterThan) {
+            [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
+            madeAnySwaps = true;
+            innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop)
+        }else {
+            madeAnySwaps = false;
+            innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop)
+        }
+    })
 }
 
 const absurdBubbleSort = (arr, sortCompletionCallback) => {
     function outerBubbleSortLoop(madeAnySwaps) {
-
+        if (madeAnySwaps) {
+            innerBubbleSortLoop(arr, 0, true, outerBubbleSortLoop);
+        } else {
+            sortCompletionCallback(arr)
+        }
     }
+    outerBubbleSortLoop(true)
 
 }
 
