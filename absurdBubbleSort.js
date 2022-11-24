@@ -34,11 +34,10 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop){
         if (isGreaterThan) {
             [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
             madeAnySwaps = true;
-            innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop)
         }else {
             madeAnySwaps = false;
-            innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop)
         }
+        innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop)
     })
 }
 
